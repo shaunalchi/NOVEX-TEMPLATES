@@ -1,0 +1,40 @@
+{
+  "default": "classic",
+  "looks": {
+    "classic": {
+      "label": "Classic: white paper, black ink, Newsreader with Barlow Semi Condensed",
+      "fonts": "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap",
+      "vars": {}
+    },
+    "coastal": {
+      "label": "Coastal: warm sand paper, deep navy ink, EB Garamond with Archivo Narrow",
+      "fonts": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=EB+Garamond:ital,wght@0,400..600;1,400..600&display=swap",
+      "vars": {
+        "--paper": "#F4F1EA",
+        "--ivory": "#EBE6DB",
+        "--ink": "#1B2733",
+        "--muted": "#575D64",
+        "--rule": "#D6D0C3",
+        "--scrim": "rgba(27,39,51,.46)",
+        "--nav-scale": ".9",
+        "--serif": "'EB Garamond','Iowan Old Style','Palatino Linotype',Georgia,serif",
+        "--sans": "'Archivo Narrow','Arial Narrow','Helvetica Neue',Arial,sans-serif"
+      }
+    },
+    "laneway": {
+      "label": "Laneway: soft white paper, deep green ink, Source Serif with Schibsted Grotesk",
+      "fonts": "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&display=swap",
+      "vars": {
+        "--paper": "#FBFAF6",
+        "--ivory": "#F0EDE4",
+        "--ink": "#1F2A22",
+        "--muted": "#575C52",
+        "--rule": "#D8D5CB",
+        "--scrim": "rgba(31,42,34,.46)",
+        "--nav-scale": ".86",
+        "--serif": "'Source Serif 4','Iowan Old Style','Palatino Linotype',Georgia,serif",
+        "--sans": "'Schibsted Grotesk','Helvetica Neue',Arial,sans-serif"
+      }
+    }
+  }
+}

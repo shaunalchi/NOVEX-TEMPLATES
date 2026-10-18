@@ -23,6 +23,18 @@ Doing it by hand:
 2. Edit `site.json`. Put photos in its `images/` folder and reference them like `"photo": "images/hero1.jpg"`.
 3. Update the client name in its `netlify.toml`.
 
+## Looks
+
+Each template comes with a few looks: a colour palette and font pairing the client picks from. The layout stays the same, so every fix to the template helps every client.
+
+Set `"look"` in site.json. The café template has:
+
+- `classic`: white paper, black ink, Newsreader with Barlow Semi Condensed (Morrow uses this)
+- `coastal`: warm sand paper, deep navy ink, EB Garamond with Archivo Narrow
+- `laneway`: soft white paper, deep green ink, Source Serif with Schibsted Grotesk
+
+Leave `"look"` out and the template's default is used. Looks live in `templates/<template>/looks.json`.
+
 ## SEO basics per client
 
 - Set `"url"` in site.json to the live address (for example `https://morrowcafe.com.au`). The build then adds a sitemap, robots.txt and canonical link.

@@ -1,5 +1,6 @@
 {
   "template": "cafe",
+  "look": "classic",
   "url": "",
   "cuisine": "Modern Australian, café",
   "openingHoursSpec": ["Mo-Fr 06:00-14:00", "Sa 07:00-14:00", "Su 07:00-14:00"],

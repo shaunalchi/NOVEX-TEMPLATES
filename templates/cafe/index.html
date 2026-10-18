@@ -15,10 +15,10 @@
 {{#if seo.shareImage}}<meta property="og:image" content="{{url}}/{{seo.shareImage}}">
 <meta name="twitter:card" content="summary_large_image">{{/if}}
 {{#if seo.searchConsole}}<meta name="google-site-verification" content="{{seo.searchConsole}}">{{/if}}
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="{{look.paper}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+{{#if look.fonts}}<link rel="stylesheet" href="{{look.fonts}}">{{/if}}
 {{#if hero.0.photo}}<link rel="preload" as="image" href="{{hero.0.photo}}" fetchpriority="high">{{/if}}
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{{json schema}}</script>

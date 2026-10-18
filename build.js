@@ -106,6 +106,23 @@ function photoDefaults(p) {
   return Object.assign({ photo: '', alt: '', position: '50% 50%', tone: 'olive', note: '' }, p);
 }
 
+/* A look is a palette and font pairing from the template's looks.json, picked with "look" in site.json. */
+function pickLook(tplDir, name, slug) {
+  const file = path.join(tplDir, 'looks.json');
+  if (!fs.existsSync(file)) return { name: '', fonts: '', paper: '#FFFFFF', css: '' };
+  const looks = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const key = name || looks.default;
+  const look = looks.looks[key];
+  if (!look) throw new Error(slug + ': look "' + key + '" not found. Options: ' + Object.keys(looks.looks).join(', '));
+  const vars = Object.entries(look.vars || {});
+  return {
+    name: key,
+    fonts: look.fonts || '',
+    paper: (look.vars && look.vars['--paper']) || '#FFFFFF',
+    css: vars.length ? '\n/* Look: ' + key + ' */\n:root{' + vars.map(([k, v]) => k + ':' + v).join(';') + '}\n' : ''
+  };
+}
+
 function buildClient(slug) {
   const dir = path.join(ROOT, 'clients', slug);
   const site = JSON.parse(fs.readFileSync(path.join(dir, 'site.json'), 'utf8'));
@@ -119,6 +136,8 @@ function buildClient(slug) {
   if (site.promo) site.promo.photo = photoDefaults(site.promo.photo);
   if (site.promo && !site.promo.menuTab && site.menu && site.menu[0]) site.promo.menuTab = site.menu[0].id;
   if (site.announcement && !site.announcement.menuTab && site.menu && site.menu[0]) site.announcement.menuTab = site.menu[0].id;
+
+  site.look = pickLook(tplDir, site.look, slug);
 
   if (site.url) site.url = site.url.replace(/\/+$/, '');
   site.runtime = {
@@ -149,7 +168,7 @@ function buildClient(slug) {
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
   fs.writeFileSync(path.join(out, 'index.html'), html);
-  fs.copyFileSync(path.join(tplDir, 'styles.css'), path.join(out, 'styles.css'));
+  fs.writeFileSync(path.join(out, 'styles.css'), fs.readFileSync(path.join(tplDir, 'styles.css'), 'utf8') + site.look.css);
   fs.copyFileSync(path.join(ROOT, 'core', 'site.js'), path.join(out, 'site.js'));
   if (site.url) {
     const base = site.url.replace(/\/+$/, '');
