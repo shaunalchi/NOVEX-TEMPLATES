@@ -1,5 +1,8 @@
 {
   "template": "cafe",
+  "url": "",
+  "cuisine": "Modern Australian, café",
+  "openingHoursSpec": ["Mo-Fr 06:00-14:00", "Sa 07:00-14:00", "Su 07:00-14:00"],
   "brand": {
     "name": "Morrow",
     "place": "Cronulla",
@@ -8,7 +11,8 @@
   "seo": {
     "title": "Morrow | Neighbourhood café in Cronulla",
     "description": "Morrow is a neighbourhood café on Kingsway, Cronulla. Breakfast, lunch and specialty coffee, seven days.",
-    "shareImage": ""
+    "shareImage": "",
+    "searchConsole": ""
   },
   "contact": {
     "street": "88 Kingsway",

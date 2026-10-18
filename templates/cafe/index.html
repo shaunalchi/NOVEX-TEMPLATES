@@ -8,7 +8,14 @@
 <meta property="og:title" content="{{seo.title}}">
 <meta property="og:description" content="{{seo.description}}">
 <meta property="og:type" content="website">
-{{#if seo.shareImage}}<meta property="og:image" content="{{seo.shareImage}}">{{/if}}
+<meta property="og:site_name" content="{{brand.legalName}}">
+<meta property="og:locale" content="en_AU">
+{{#if url}}<link rel="canonical" href="{{url}}/">
+<meta property="og:url" content="{{url}}/">{{/if}}
+{{#if seo.shareImage}}<meta property="og:image" content="{{url}}/{{seo.shareImage}}">
+<meta name="twitter:card" content="summary_large_image">{{/if}}
+{{#if seo.searchConsole}}<meta name="google-site-verification" content="{{seo.searchConsole}}">{{/if}}
+<meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">

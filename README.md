@@ -23,6 +23,15 @@ Doing it by hand:
 2. Edit `site.json`. Put photos in its `images/` folder and reference them like `"photo": "images/hero1.jpg"`.
 3. Update the client name in its `netlify.toml`.
 
+## SEO basics per client
+
+- Set `"url"` in site.json to the live address (for example `https://morrowcafe.com.au`). The build then adds a sitemap, robots.txt and canonical link.
+- Add the Google Search Console verification code to `seo.searchConsole`, then submit `/sitemap.xml` in Search Console.
+- `openingHoursSpec` and `cuisine` feed Google's business details.
+- The client's Google Business Profile matters more for local search than anything on the site. Keep its hours, photos and website link in sync.
+
+Client intake checklist: `docs/intake-checklist.md`.
+
 ## Photos
 
 Every photo slot has a `note` describing the shot it needs. Leave `photo` empty and the slot shows a tonal placeholder with that note. Use JPGs around 2400px wide for the hero and 1600px elsewhere, under about 400KB each. `position` sets the focal point, for example `"50% 30%"` keeps the top third in frame.

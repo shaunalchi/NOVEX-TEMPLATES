@@ -120,6 +120,7 @@ function buildClient(slug) {
   if (site.promo && !site.promo.menuTab && site.menu && site.menu[0]) site.promo.menuTab = site.menu[0].id;
   if (site.announcement && !site.announcement.menuTab && site.menu && site.menu[0]) site.announcement.menuTab = site.menu[0].id;
 
+  if (site.url) site.url = site.url.replace(/\/+$/, '');
   site.runtime = {
     slug,
     phone: site.contact.phone,
@@ -137,7 +138,10 @@ function buildClient(slug) {
     telephone: site.contact.phoneIntl,
     email: site.contact.email,
     address: { '@type': 'PostalAddress', streetAddress: site.contact.street, addressLocality: site.contact.suburb, addressRegion: site.contact.state, postalCode: site.contact.postcode, addressCountry: 'AU' },
-    sameAs: Object.values(site.social || {}).filter(Boolean)
+    sameAs: Object.values(site.social || {}).filter(Boolean),
+    url: site.url || undefined,
+    servesCuisine: site.cuisine || undefined,
+    openingHours: (site.openingHoursSpec || undefined)
   };
 
   const html = render(fs.readFileSync(path.join(tplDir, 'index.html'), 'utf8'), [{ data: site }]);
@@ -147,6 +151,15 @@ function buildClient(slug) {
   fs.writeFileSync(path.join(out, 'index.html'), html);
   fs.copyFileSync(path.join(tplDir, 'styles.css'), path.join(out, 'styles.css'));
   fs.copyFileSync(path.join(ROOT, 'core', 'site.js'), path.join(out, 'site.js'));
+  if (site.url) {
+    const base = site.url.replace(/\/+$/, '');
+    const today = new Date().toISOString().slice(0, 10);
+    fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n');
+    fs.writeFileSync(path.join(out, 'sitemap.xml'),
+      '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>' + base + '/</loc><lastmod>' + today + '</lastmod></url>\n</urlset>\n');
+  } else {
+    console.warn('  ' + slug + ': no "url" in site.json yet, so no sitemap.xml or canonical link');
+  }
   const imgs = path.join(dir, 'images');
   if (fs.existsSync(imgs)) fs.cpSync(imgs, path.join(out, 'images'), { recursive: true });
   console.log('Built ' + slug + ' -> dist/' + slug + '/');
