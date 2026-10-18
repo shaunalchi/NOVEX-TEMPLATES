@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{{json schema}}</script>
 </head>
-<body>
+<body{{#if brand.longWord}} class="is-long-name"{{/if}}>
 
 {{#if announcement.text}}
 <div class="announce" id="announce">

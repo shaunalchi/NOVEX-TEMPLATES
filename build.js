@@ -138,6 +138,8 @@ function buildClient(slug) {
   if (site.announcement && !site.announcement.menuTab && site.menu && site.menu[0]) site.announcement.menuTab = site.menu[0].id;
 
   site.look = pickLook(tplDir, site.look, slug);
+  /* Names with a long single word ("Backstreet") get smaller display type on phones so they don't run off screen. */
+  site.brand.longWord = Math.max(...String(site.brand.name).split(/\s+/).map(w => w.length)) > 8;
 
   if (site.url) site.url = site.url.replace(/\/+$/, '');
   site.runtime = {

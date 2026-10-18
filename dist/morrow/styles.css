@@ -50,7 +50,7 @@ button{font:inherit;color:inherit}
 /* Header */
 .site-header{background:var(--paper);position:relative;z-index:30;border-bottom:1px solid transparent}
 .site-header .inner{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;padding-block:28px 26px}
-.wordmark{display:inline-flex;flex-direction:column;text-decoration:none;line-height:1}
+.wordmark{display:inline-flex;flex-direction:column;min-width:0;text-decoration:none;line-height:1}
 .wordmark__place{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:.04em;text-transform:uppercase}
 .wordmark__name{font-family:var(--serif);font-weight:400;font-size:clamp(44px,4.6vw,66px);letter-spacing:-.01em;text-transform:uppercase;font-variation-settings:'opsz' 72;margin-top:2px}
 .nav{display:flex;align-items:center;gap:clamp(18px,2vw,34px);font-family:var(--sans);font-weight:700;font-size:calc(clamp(17px,1.45vw,21px) * var(--nav-scale,1));white-space:nowrap;text-transform:uppercase;letter-spacing:.02em;padding-bottom:6px}
@@ -68,7 +68,7 @@ button{font:inherit;color:inherit}
 .nav__social a{display:grid;place-items:center;width:32px;height:32px}
 .nav__social a::after{display:none}
 .icon{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7}
-.mobile-actions{display:none;align-items:center;gap:8px}
+.mobile-actions{display:none;flex-shrink:0;align-items:center;gap:8px}
 .mobile-book{min-height:44px;padding:0 16px;font-size:16px}
 .menu-toggle{width:44px;height:44px;display:grid;place-items:center;background:none;border:0;cursor:pointer}
 .menu-toggle__bars{position:relative;width:24px;height:12px}
@@ -186,6 +186,8 @@ fieldset.field{border:0;margin:0;padding:0}
 .footer a{text-decoration:none}
 .footer a:hover{text-decoration:underline;text-underline-offset:4px}
 .footer__mark{font-family:var(--serif);font-size:clamp(56px,6vw,96px);line-height:.9;text-transform:uppercase;font-variation-settings:'opsz' 72}
+.is-long-name .intro__mark span:last-child{font-size:min(clamp(64px,7.5vw,118px),12vw)}
+.is-long-name .footer__mark{font-size:min(clamp(56px,6vw,96px),11vw)}
 .hours{display:grid;grid-template-columns:auto auto;gap:6px 24px;font-size:17px;color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums}
 .footer__base{grid-column:1 / -1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.03em;color:rgba(255,255,255,.62)}
 
@@ -261,6 +263,7 @@ fieldset.field{border:0;margin:0;padding:0}
 @media (max-width: 420px){
   .announce{letter-spacing:.05em}
   .wordmark__name{font-size:34px}
+  .is-long-name .wordmark__name{font-size:clamp(24px,6.6vw,34px)}
   .mobile-book{padding:0 12px}
 }
 @media (prefers-reduced-motion: reduce){
