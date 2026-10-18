@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{seo.title}}</title>
+<meta name="description" content="{{seo.description}}">
+<meta property="og:title" content="{{seo.title}}">
+<meta property="og:description" content="{{seo.description}}">
+<meta property="og:type" content="website">
+{{#if seo.shareImage}}<meta property="og:image" content="{{seo.shareImage}}">{{/if}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+{{#if hero.0.photo}}<link rel="preload" as="image" href="{{hero.0.photo}}" fetchpriority="high">{{/if}}
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{{json schema}}</script>
+</head>
+<body>
+
+{{#if announcement.text}}
+<div class="announce" id="announce">
+  <div class="inner gutter">
+    <a href="#menu" data-open-menu="{{announcement.menuTab}}">{{announcement.text}}</a>
+    <button class="announce__close" type="button" aria-label="Close announcement" id="announce-close">
+      <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+<header class="site-header" id="top">
+  <div class="inner gutter">
+    <a class="wordmark" href="#top" aria-label="{{brand.name}}, {{brand.place}}, home">
+      <span class="wordmark__place">{{brand.place}}</span>
+      <span class="wordmark__name">{{brand.name}}</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <div class="nav__group">
+        <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="dd-menu">Menu
+          <svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <div class="nav__panel" id="dd-menu" hidden>
+          {{#each menu}}<button type="button" data-open-menu="{{id}}">{{label}}</button>{{/each}}
+        </div>
+      </div>
+      <a href="#story">Our Story</a>
+      {{#if events}}<a href="#whats-on">What's On</a>{{/if}}
+      {{#if functions}}
+      <div class="nav__group">
+        <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="dd-functions">Functions
+          <svg class="nav__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <div class="nav__panel" id="dd-functions" hidden>
+          <a href="#functions">{{functions.navLabel}}</a>
+          <a href="#contact" data-enquiry="Function or private event">Function enquiry</a>
+          <a href="#contact" data-enquiry="Catering">Catering</a>
+        </div>
+      </div>
+      {{/if}}
+      <a href="#contact">Contact</a>
+      <a href="#contact" data-book>Reservations</a>
+      <div class="nav__social">
+        {{#if social.instagram}}<a href="{{social.instagram}}" aria-label="Instagram" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a>{{/if}}
+        {{#if social.facebook}}<a href="{{social.facebook}}" aria-label="Facebook" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H9v3h2.5V21"/></svg></a>{{/if}}
+      </div>
+    </nav>
+
+    <div class="mobile-actions">
+      <a class="btn mobile-book" href="#contact" data-book>Book</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" id="menu-toggle">
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <button type="button" data-open-menu="{{menu.0.id}}">Menu</button>
+    <div class="mobile-nav__sub">
+      {{#each menu}}<button type="button" data-open-menu="{{id}}">{{label}}</button>{{/each}}
+    </div>
+    <a href="#story">Our Story</a>
+    {{#if events}}<a href="#whats-on">What's On</a>{{/if}}
+    {{#if functions}}<a href="#functions">Functions</a>{{/if}}
+    <a href="#contact">Contact</a>
+    <a href="#contact" data-book>Reservations</a>
+    <div class="mobile-nav__social">
+      {{#if social.instagram}}<a href="{{social.instagram}}" target="_blank" rel="noopener">Instagram</a>{{/if}}
+      {{#if social.facebook}}<a href="{{social.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-roledescription="carousel" aria-label="Photos of {{brand.name}}">
+    {{#each hero}}
+    <div class="hero__slide{{#if @first}} is-active{{/if}}" role="group" aria-roledescription="slide" aria-label="{{@num}} of {{@count}}"{{#unless @first}} aria-hidden="true"{{/unless}}>
+      <div class="media{{#if photo}} has-photo{{/if}}" data-tone="{{tone}}">{{#if photo}}<img src="{{photo}}" alt="{{alt}}" style="object-position:{{position}}" decoding="async" {{#if @first}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}}>{{/if}}<span class="media__note">{{note}}</span></div>
+    </div>
+    {{/each}}
+    <div class="hero__controls">
+      <span class="hero__count" aria-live="polite" id="hero-count">1 / {{hero.length}}</span>
+      <button class="hero__btn" type="button" aria-label="Previous photo" id="hero-prev"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="hero__btn" type="button" aria-label="Pause slideshow" aria-pressed="false" id="hero-pause"><svg viewBox="0 0 16 16" aria-hidden="true" id="hero-pause-icon"><path d="M5.5 3v10M10.5 3v10"/></svg></button>
+      <button class="hero__btn" type="button" aria-label="Next photo" id="hero-next"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </section>
+
+  <section class="intro" id="story" aria-labelledby="intro-title">
+    <div class="inner gutter">
+      <h2 class="intro__mark" id="intro-title"><span>{{brand.place}}</span><span>{{brand.name}}</span></h2>
+      <div class="intro__copy">
+        {{#each intro.paragraphs}}<p>{{this}}</p>{{/each}}
+        <a class="btn" href="#contact" data-book>Reserve a table</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="split" id="menu" aria-labelledby="menu-title">
+    {{#with menuFeature.photo}}<div class="media{{#if photo}} has-photo{{/if}}" data-tone="{{tone}}">{{#if photo}}<img src="{{photo}}" alt="{{alt}}" style="object-position:{{position}}" loading="lazy" decoding="async">{{/if}}<span class="media__note">{{note}}</span></div>{{/with}}
+    <div class="split__text">
+      <h2 id="menu-title">{{br menuFeature.heading}}</h2>
+      <p>{{menuFeature.body}}</p>
+      <ul class="services">
+        {{#each menuFeature.services}}<li><span>{{name}}</span><span>{{time}}</span></li>{{/each}}
+      </ul>
+      <button class="btn" type="button" data-open-menu="{{menu.0.id}}">View menu</button>
+    </div>
+  </section>
+
+  {{#if functions}}
+  <section class="split split--white split--reverse" id="functions" aria-labelledby="functions-title">
+    {{#with functions.photo}}<div class="media{{#if photo}} has-photo{{/if}}" data-tone="{{tone}}">{{#if photo}}<img src="{{photo}}" alt="{{alt}}" style="object-position:{{position}}" loading="lazy" decoding="async">{{/if}}<span class="media__note">{{note}}</span></div>{{/with}}
+    <div class="split__text">
+      <h2 id="functions-title">{{br functions.heading}}</h2>
+      {{#each functions.paragraphs}}<p>{{this}}</p>{{/each}}
+      <a class="btn" href="#contact" data-enquiry="Function or private event">Make an enquiry</a>
+    </div>
+  </section>
+  {{/if}}
+
+  {{#if events}}
+  <section class="whats-on" id="whats-on" aria-labelledby="whats-on-title">
+    <div class="inner gutter">
+      <div class="section-head"><h2 id="whats-on-title">What's on</h2></div>
+      <div class="listings">
+        {{#each events}}
+        <article class="listing">
+          <div class="listing__when">{{when}}</div>
+          <h3>{{title}}</h3>
+          <p>{{desc}}</p>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  {{/if}}
+
+  {{#if gallery}}
+  <section class="gallery" aria-label="Gallery">
+    <div class="inner gutter">
+      <div class="gallery__grid">
+        {{#each gallery}}<figure><div class="media{{#if photo}} has-photo{{/if}}" data-tone="{{tone}}">{{#if photo}}<img src="{{photo}}" alt="{{alt}}" style="object-position:{{position}}" loading="lazy" decoding="async">{{/if}}<span class="media__note">{{note}}</span></div><figcaption>{{caption}}</figcaption></figure>{{/each}}
+      </div>
+    </div>
+  </section>
+  {{/if}}
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="inner gutter">
+      <div>
+        <h2 id="contact-title">Contact us</h2>
+        <div class="contact__details">
+          <p>{{contact.street}},<br>{{contact.suburb}} {{contact.state}} {{contact.postcode}}</p>
+          <p><a href="tel:{{contact.phoneIntl}}">{{contact.phone}}</a><br><a href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+          <div class="contact__social">
+            {{#if social.instagram}}<a href="{{social.instagram}}" aria-label="Instagram" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a>{{/if}}
+            {{#if social.facebook}}<a href="{{social.facebook}}" aria-label="Facebook" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H9v3h2.5V21"/></svg></a>{{/if}}
+          </div>
+          {{#if contact.note}}<p class="contact__note">{{contact.note}}</p>{{/if}}
+        </div>
+      </div>
+      <div>
+        <h2>Enquiry form</h2>
+        <div class="booking-note" id="booking-note" hidden>Online bookings aren't connected yet. Send a booking request below and the team will confirm by phone or email.</div>
+        <form class="form" id="enquiry" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="enquiry">
+          <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+          <div class="field">
+            <label for="f-first">First name<span class="req">(required)</span></label>
+            <input id="f-first" name="first" autocomplete="given-name" required aria-describedby="e-first">
+            <span class="field__error" id="e-first" hidden>Enter your first name.</span>
+          </div>
+          <div class="field">
+            <label for="f-last">Last name<span class="req">(required)</span></label>
+            <input id="f-last" name="last" autocomplete="family-name" required aria-describedby="e-last">
+            <span class="field__error" id="e-last" hidden>Enter your last name.</span>
+          </div>
+          <fieldset class="field field--full">
+            <legend>Phone</legend>
+            <div class="phone">
+              <div class="field">
+                <label for="f-country">Country</label>
+                <select id="f-country" name="country" autocomplete="country-name">
+                  <option value="+61" selected>Australia (+61)</option>
+                  <option value="+64">New Zealand (+64)</option>
+                  <option value="+44">United Kingdom (+44)</option>
+                  <option value="+1">United States (+1)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-phone">Number</label>
+                <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="0400 000 000" aria-describedby="e-phone">
+                <span class="field__error" id="e-phone" hidden>Check the number. Use digits and spaces only.</span>
+              </div>
+            </div>
+          </fieldset>
+          <div class="field field--full">
+            <label for="f-email">Email<span class="req">(required)</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email">
+            <span class="field__error" id="e-email" hidden>Enter an email address like name@example.com.</span>
+          </div>
+          <div class="field field--full">
+            <label for="f-type">What is it about?</label>
+            <select id="f-type" name="type">
+              <option>General enquiry</option>
+              <option>Table booking</option>
+              <option>Function or private event</option>
+              <option>Catering</option>
+              <option>Work with us</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="f-message">Message<span class="req">(required)</span></label>
+            <textarea id="f-message" name="message" required aria-describedby="e-message"></textarea>
+            <span class="field__error" id="e-message" hidden>Add a short message so we know how to help.</span>
+          </div>
+          <div class="form__actions">
+            <button class="btn btn--wide" type="submit">Send enquiry</button>
+            <div class="form__status" id="form-status" role="status" hidden></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner gutter">
+    <div class="footer__brand">
+      <div class="footer__mark">{{brand.name}}</div>
+      <p style="margin-top:18px">{{contact.street}}, {{contact.suburb}} {{contact.state}} {{contact.postcode}}</p>
+    </div>
+    <div>
+      <h2>Hours</h2>
+      <div class="hours">
+        {{#each hours}}<span>{{days}}</span><span>{{time}}</span>{{/each}}
+      </div>
+    </div>
+    <div>
+      <h2>Visit</h2>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#story">Our story</a></li>
+        {{#if functions}}<li><a href="#functions">Functions</a></li>{{/if}}
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Follow</h2>
+      <ul>
+        {{#if social.instagram}}<li><a href="{{social.instagram}}" target="_blank" rel="noopener">Instagram</a></li>{{/if}}
+        {{#if social.facebook}}<li><a href="{{social.facebook}}" target="_blank" rel="noopener">Facebook</a></li>{{/if}}
+      </ul>
+    </div>
+    <div class="footer__base"><span>{{brand.legalName}}</span><span>Website by Novex</span></div>
+  </div>
+</footer>
+
+{{#if promo.enabled}}
+<div class="modal promo-dialog" id="promo" role="dialog" aria-modal="true" aria-labelledby="promo-title" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" type="button" data-close aria-label="Close">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg>
+    </button>
+    <div class="promo">
+      {{#with promo.photo}}<div class="media{{#if photo}} has-photo{{/if}}" data-tone="{{tone}}">{{#if photo}}<img src="{{photo}}" alt="{{alt}}" style="object-position:{{position}}" loading="lazy" decoding="async">{{/if}}<span class="media__note" style="--note-x:28px">{{note}}</span></div>{{/with}}
+      <div class="promo__text">
+        <h2 id="promo-title">{{br promo.heading}}</h2>
+        <p>{{promo.body}}</p>
+        <button class="btn" type="button" data-open-menu="{{promo.menuTab}}">{{promo.button}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+<div class="modal menu-dialog" id="menu-dialog" role="dialog" aria-modal="true" aria-labelledby="menu-dialog-title" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" type="button" data-close aria-label="Close menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg>
+    </button>
+    <div class="menu-dialog__body">
+      <h2 id="menu-dialog-title">Menu</h2>
+      <div class="tabs" role="tablist" aria-label="Menu sections">
+        {{#each menu}}<button class="tab" type="button" role="tab" id="tab-{{id}}" aria-controls="panel-menu" aria-selected="{{#if @first}}true{{else}}false{{/if}}" data-tab="{{id}}"{{#unless @first}} tabindex="-1"{{/unless}}>{{label}}</button>{{/each}}
+      </div>
+      <ul class="menu-list" id="panel-menu" role="tabpanel" aria-labelledby="tab-{{menu.0.id}}"></ul>
+      {{#if menuNote}}<p class="menu-dialog__foot">{{menuNote}}</p>{{/if}}
+    </div>
+  </div>
+</div>
+
+<script>window.SITE = {{json runtime}};</script>
+<script src="site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Netlify settings for this client.
+# In Netlify, set "Base directory" to clients/morrow and leave the rest blank.
+[build]
+  command = "node ../../build.js morrow"
+  publish = "../../dist/morrow"
