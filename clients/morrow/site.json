@@ -1,7 +1,7 @@
 {
   "template": "cafe",
   "look": "classic",
-  "url": "",
+  "url": "https://novex-morrow-demo.netlify.app",
   "cuisine": "Modern Australian, café",
   "openingHoursSpec": ["Mo-Fr 06:00-14:00", "Sa 07:00-14:00", "Su 07:00-14:00"],
   "brand": {
@@ -35,10 +35,10 @@
     "text": "Weekend brunch now served until 2pm. See the menu"
   },
   "hero": [
-    { "photo": "", "alt": "The dining room at Morrow in morning light", "tone": "olive", "note": "Photo 1: the dining room in morning light, wide, from the doorway" },
-    { "photo": "", "alt": "Flat whites and pastries on the counter", "tone": "timber", "position": "50% 60%", "note": "Photo 2: flat whites and the morning pastry tray on the counter" },
-    { "photo": "", "alt": "Ricotta hotcake with seasonal fruit", "tone": "cream", "position": "50% 45%", "note": "Photo 3: the ricotta hotcake, shot close, natural light" },
-    { "photo": "", "alt": "Hands around a coffee cup at a window table", "tone": "brass", "position": "40% 50%", "note": "Photo 4: a detail, hands on a cup, a table by the window" }
+    { "photo": "images/hero1.jpg", "alt": "The dining room at Morrow in morning light", "tone": "olive", "note": "Photo 1: the dining room in morning light, wide, from the doorway" },
+    { "photo": "images/hero2.jpg", "alt": "Flat whites and pastries on the counter", "tone": "timber", "position": "50% 60%", "note": "Photo 2: flat whites and the morning pastry tray on the counter" },
+    { "photo": "images/hero3.jpg", "alt": "Ricotta hotcake with seasonal fruit", "tone": "cream", "position": "50% 45%", "note": "Photo 3: the ricotta hotcake, shot close, natural light" },
+    { "photo": "images/hero4.jpg", "alt": "Hands around a coffee cup at a window table", "tone": "brass", "position": "40% 50%", "note": "Photo 4: a detail, hands on a cup, a table by the window" }
   ],
   "intro": {
     "paragraphs": [
@@ -54,7 +54,7 @@
       { "name": "Lunch", "time": "11am to close" },
       { "name": "Coffee window", "time": "From 6am" }
     ],
-    "photo": { "photo": "", "alt": "Breakfast plates from above", "tone": "timber", "note": "Photo: a spread of breakfast plates from above, coffee at the edge" }
+    "photo": { "photo": "images/menu.jpg", "alt": "Breakfast plates from above", "tone": "timber", "note": "Photo: a spread of breakfast plates from above, coffee at the edge" }
   },
   "functions": {
     "navLabel": "The back room",
@@ -63,7 +63,7 @@
       "Birthdays, christenings, team breakfasts and long Sunday lunches. The back room seats up to 30, or you can take over the whole café after 3pm.",
       "Tell us the date, the headcount and what you have in mind, and we will put a menu together."
     ],
-    "photo": { "photo": "", "alt": "The back room set for a long lunch", "tone": "olive", "note": "Photo: the back room set for a long lunch, warm evening light" }
+    "photo": { "photo": "images/functions.jpg", "alt": "The back room set for a long lunch", "tone": "olive", "note": "Photo: the back room set for a long lunch, warm evening light" }
   },
   "events": [
     { "when": "Saturdays and Sundays", "title": "Weekend brunch until 2pm", "desc": "The full breakfast menu runs an extra hour. Book ahead for groups of six or more." },
@@ -71,9 +71,9 @@
     { "when": "Through summer", "title": "Coffee window from 6am", "desc": "For swimmers, walkers and early starts. Order at the window and keep moving." }
   ],
   "gallery": [
-    { "photo": "", "alt": "The front window on Kingsway", "tone": "cream", "note": "Gallery photo", "caption": "The front window, Kingsway" },
-    { "photo": "", "alt": "Pour over coffee at the bar", "tone": "ink", "note": "Gallery photo", "caption": "Pour over at the bar" },
-    { "photo": "", "alt": "Thursday bakery tray", "tone": "brass", "note": "Gallery photo", "caption": "Thursday bakery tray" }
+    { "photo": "images/gallery1.jpg", "alt": "A flat white being poured at the machine", "tone": "cream", "note": "Gallery photo", "caption": "Flat white at the machine" },
+    { "photo": "images/gallery2.jpg", "alt": "Granola jars and sourdough loaves on the shelf", "tone": "ink", "note": "Gallery photo", "caption": "Granola and sourdough" },
+    { "photo": "images/gallery3.jpg", "alt": "Iced coffee and smashed avo at a footpath table near the beach", "tone": "brass", "note": "Gallery photo", "caption": "A footpath table" }
   ],
   "hours": [
     { "days": "Mon to Fri", "time": "6am to 2pm" },
@@ -87,7 +87,7 @@
     "body": "Brunch now runs until 2pm every Saturday and Sunday. Ricotta hotcakes, eggs from Kurrajong and the first pastries out of the oven.",
     "button": "See the brunch menu",
     "delayMs": 2000,
-    "photo": { "photo": "", "alt": "Weekend brunch for two", "tone": "cream", "note": "Photo: weekend brunch for two, coffee and pastries, shot from above" }
+    "photo": { "photo": "images/promo.jpg", "alt": "Weekend brunch for two", "tone": "cream", "note": "Photo: weekend brunch for two, coffee and pastries, shot from above" }
   },
   "menuNote": "Gluten free bread and plant milks available. Tell us about allergies when you order.",
   "menu": [

@@ -106,10 +106,10 @@ button{font:inherit;color:inherit}
 .hero__btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
 
 /* Intro */
-.intro .inner{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,5vw,96px);padding-block:var(--section)}
-.intro__mark{display:flex;flex-direction:column;line-height:.9;padding-top:6px}
+.intro .inner{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);padding-block:var(--section)}
+.intro__mark{display:flex;flex-direction:column;line-height:.9;padding-top:6px;container-type:inline-size}
 .intro__mark span:first-child{font-family:var(--sans);font-weight:700;font-size:clamp(22px,2.2vw,34px);text-transform:uppercase;letter-spacing:.03em}
-.intro__mark span:last-child{font-family:var(--serif);font-size:clamp(64px,7.5vw,118px);text-transform:uppercase;letter-spacing:-.02em;font-variation-settings:'opsz' 72;margin-top:6px}
+.intro__mark span:last-child{font-family:var(--serif);font-size:min(clamp(64px,7.5vw,118px),18cqi);text-transform:uppercase;letter-spacing:-.02em;font-variation-settings:'opsz' 72;margin-top:6px}
 .intro__copy{display:flex;flex-direction:column;gap:28px;max-width:62ch}
 .intro__copy p{font-size:clamp(21px,1.9vw,29px);line-height:1.5;font-variation-settings:'opsz' 24}
 .intro__copy .btn{align-self:flex-start;margin-top:20px}
@@ -186,7 +186,7 @@ fieldset.field{border:0;margin:0;padding:0}
 .footer a{text-decoration:none}
 .footer a:hover{text-decoration:underline;text-underline-offset:4px}
 .footer__mark{font-family:var(--serif);font-size:clamp(56px,6vw,96px);line-height:.9;text-transform:uppercase;font-variation-settings:'opsz' 72}
-.is-long-name .intro__mark span:last-child{font-size:min(clamp(64px,7.5vw,118px),12vw)}
+.is-long-name .intro__mark span:last-child{font-size:min(clamp(64px,7.5vw,118px),12vw,13cqi)}
 .is-long-name .footer__mark{font-size:min(clamp(56px,6vw,96px),11vw)}
 .hours{display:grid;grid-template-columns:auto auto;gap:6px 24px;font-size:17px;color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums}
 .footer__base{grid-column:1 / -1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.03em;color:rgba(255,255,255,.62)}

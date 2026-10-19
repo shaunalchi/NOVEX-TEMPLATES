@@ -10,16 +10,17 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Morrow Café">
 <meta property="og:locale" content="en_AU">
-
+<link rel="canonical" href="https://novex-morrow-demo.netlify.app/">
+<meta property="og:url" content="https://novex-morrow-demo.netlify.app/">
 
 
 <meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&amp;display=swap">
-
+<link rel="preload" as="image" href="images/hero1.jpg" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Morrow Café","telephone":"+61255501234","email":"hello@morrowcafe.com.au","address":{"@type":"PostalAddress","streetAddress":"88 Kingsway","addressLocality":"Cronulla","addressRegion":"NSW","postalCode":"2230","addressCountry":"AU"},"sameAs":["https://www.instagram.com/","https://www.facebook.com/"],"servesCuisine":"Modern Australian, café","openingHours":["Mo-Fr 06:00-14:00","Sa 07:00-14:00","Su 07:00-14:00"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Morrow Café","telephone":"+61255501234","email":"hello@morrowcafe.com.au","address":{"@type":"PostalAddress","streetAddress":"88 Kingsway","addressLocality":"Cronulla","addressRegion":"NSW","postalCode":"2230","addressCountry":"AU"},"sameAs":["https://www.instagram.com/","https://www.facebook.com/"],"url":"https://novex-morrow-demo.netlify.app","servesCuisine":"Modern Australian, café","openingHours":["Mo-Fr 06:00-14:00","Sa 07:00-14:00","Su 07:00-14:00"]}</script>
 </head>
 <body>
 
@@ -101,19 +102,19 @@
   <section class="hero" aria-roledescription="carousel" aria-label="Photos of Morrow">
     
     <div class="hero__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4">
-      <div class="media" data-tone="olive"><span class="media__note">Photo 1: the dining room in morning light, wide, from the doorway</span></div>
+      <div class="media has-photo" data-tone="olive"><img src="images/hero1.jpg" alt="The dining room at Morrow in morning light" style="object-position:50% 50%" decoding="async" loading="eager" fetchpriority="high"><span class="media__note">Photo 1: the dining room in morning light, wide, from the doorway</span></div>
     </div>
     
     <div class="hero__slide" role="group" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
-      <div class="media" data-tone="timber"><span class="media__note">Photo 2: flat whites and the morning pastry tray on the counter</span></div>
+      <div class="media has-photo" data-tone="timber"><img src="images/hero2.jpg" alt="Flat whites and pastries on the counter" style="object-position:50% 60%" decoding="async" loading="lazy"><span class="media__note">Photo 2: flat whites and the morning pastry tray on the counter</span></div>
     </div>
     
     <div class="hero__slide" role="group" aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
-      <div class="media" data-tone="cream"><span class="media__note">Photo 3: the ricotta hotcake, shot close, natural light</span></div>
+      <div class="media has-photo" data-tone="cream"><img src="images/hero3.jpg" alt="Ricotta hotcake with seasonal fruit" style="object-position:50% 45%" decoding="async" loading="lazy"><span class="media__note">Photo 3: the ricotta hotcake, shot close, natural light</span></div>
     </div>
     
     <div class="hero__slide" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
-      <div class="media" data-tone="brass"><span class="media__note">Photo 4: a detail, hands on a cup, a table by the window</span></div>
+      <div class="media has-photo" data-tone="brass"><img src="images/hero4.jpg" alt="Hands around a coffee cup at a window table" style="object-position:40% 50%" decoding="async" loading="lazy"><span class="media__note">Photo 4: a detail, hands on a cup, a table by the window</span></div>
     </div>
     
     <div class="hero__controls">
@@ -135,7 +136,7 @@
   </section>
 
   <section class="split" id="menu" aria-labelledby="menu-title">
-    <div class="media" data-tone="timber"><span class="media__note">Photo: a spread of breakfast plates from above, coffee at the edge</span></div>
+    <div class="media has-photo" data-tone="timber"><img src="images/menu.jpg" alt="Breakfast plates from above" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note">Photo: a spread of breakfast plates from above, coffee at the edge</span></div>
     <div class="split__text">
       <h2 id="menu-title">Breakfast,<br>lunch and coffee</h2>
       <p>A short menu cooked properly. Breakfast all morning, lunch from eleven, and a counter of pastries that usually sells out before ten on weekends.</p>
@@ -148,7 +149,7 @@
 
   
   <section class="split split--white split--reverse" id="functions" aria-labelledby="functions-title">
-    <div class="media" data-tone="olive"><span class="media__note">Photo: the back room set for a long lunch, warm evening light</span></div>
+    <div class="media has-photo" data-tone="olive"><img src="images/functions.jpg" alt="The back room set for a long lunch" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note">Photo: the back room set for a long lunch, warm evening light</span></div>
     <div class="split__text">
       <h2 id="functions-title">The back<br>room</h2>
       <p>Birthdays, christenings, team breakfasts and long Sunday lunches. The back room seats up to 30, or you can take over the whole café after 3pm.</p><p>Tell us the date, the headcount and what you have in mind, and we will put a menu together.</p>
@@ -190,7 +191,7 @@
   <section class="gallery" aria-label="Gallery">
     <div class="inner gutter">
       <div class="gallery__grid">
-        <figure><div class="media" data-tone="cream"><span class="media__note">Gallery photo</span></div><figcaption>The front window, Kingsway</figcaption></figure><figure><div class="media" data-tone="ink"><span class="media__note">Gallery photo</span></div><figcaption>Pour over at the bar</figcaption></figure><figure><div class="media" data-tone="brass"><span class="media__note">Gallery photo</span></div><figcaption>Thursday bakery tray</figcaption></figure>
+        <figure><div class="media has-photo" data-tone="cream"><img src="images/gallery1.jpg" alt="A flat white being poured at the machine" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note">Gallery photo</span></div><figcaption>Flat white at the machine</figcaption></figure><figure><div class="media has-photo" data-tone="ink"><img src="images/gallery2.jpg" alt="Granola jars and sourdough loaves on the shelf" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note">Gallery photo</span></div><figcaption>Granola and sourdough</figcaption></figure><figure><div class="media has-photo" data-tone="brass"><img src="images/gallery3.jpg" alt="Iced coffee and smashed avo at a footpath table near the beach" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note">Gallery photo</span></div><figcaption>A footpath table</figcaption></figure>
       </div>
     </div>
   </section>
@@ -315,7 +316,7 @@
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg>
     </button>
     <div class="promo">
-      <div class="media" data-tone="cream"><span class="media__note" style="--note-x:28px">Photo: weekend brunch for two, coffee and pastries, shot from above</span></div>
+      <div class="media has-photo" data-tone="cream"><img src="images/promo.jpg" alt="Weekend brunch for two" style="object-position:50% 50%" loading="lazy" decoding="async"><span class="media__note" style="--note-x:28px">Photo: weekend brunch for two, coffee and pastries, shot from above</span></div>
       <div class="promo__text">
         <h2 id="promo-title">A new<br>weekend<br>ritual</h2>
         <p>Brunch now runs until 2pm every Saturday and Sunday. Ricotta hotcakes, eggs from Kurrajong and the first pastries out of the oven.</p>
