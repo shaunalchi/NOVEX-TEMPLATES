@@ -44,6 +44,21 @@ Leave `"look"` out and the template's default is used. Looks live in `templates/
 
 Client intake checklist: `docs/intake-checklist.md`.
 
+## Updates and dated content
+
+Every change a client asks for (menu, prices, hours, events, specials) is an edit to their `site.json`, then a push to main.
+
+Events, the announcement bar and the promo popup can take `"from"` and `"until"` dates (`YYYY-MM-DD`, Sydney time):
+
+```json
+{ "when": "Tuesday 4 November", "title": "Melbourne Cup lunch", "desc": "...", "until": "2026-11-04" }
+```
+
+- An item shows from its `from` date (if set) to the end of its `until` date, then disappears by itself. No rebuild is needed for it to lapse.
+- Items already past `until` are dropped at the next build, so tidy-up happens on the next push.
+- If every event has lapsed, the What's On section and its nav links hide too.
+- Ongoing items ("Every Thursday") just leave the dates out.
+
 ## Photos
 
 Every photo slot has a `note` describing the shot it needs. Leave `photo` empty and the slot shows a tonal placeholder with that note. Use JPGs around 2400px wide for the hero and 1600px elsewhere, under about 400KB each. `position` sets the focal point, for example `"50% 30%"` keeps the top third in frame.

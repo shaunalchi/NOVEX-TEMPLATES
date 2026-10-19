@@ -123,6 +123,12 @@ function pickLook(tplDir, name, slug) {
   };
 }
 
+/* Dated content: events, the announcement and the promo can carry "from" and/or "until" (YYYY-MM-DD, Sydney time).
+   Anything already past its "until" is left out at build time; site.js also hides items on the day they lapse,
+   so nothing stale shows between rebuilds. */
+const sydneyToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Sydney' }).format(new Date());
+const notExpired = (item, today) => !(item && item.until && item.until < today);
+
 function buildClient(slug) {
   const dir = path.join(ROOT, 'clients', slug);
   const site = JSON.parse(fs.readFileSync(path.join(dir, 'site.json'), 'utf8'));
@@ -136,6 +142,11 @@ function buildClient(slug) {
   if (site.promo) site.promo.photo = photoDefaults(site.promo.photo);
   if (site.promo && !site.promo.menuTab && site.menu && site.menu[0]) site.promo.menuTab = site.menu[0].id;
   if (site.announcement && !site.announcement.menuTab && site.menu && site.menu[0]) site.announcement.menuTab = site.menu[0].id;
+
+  const today = sydneyToday();
+  site.events = (site.events || []).filter(e => notExpired(e, today));
+  if (site.announcement && !notExpired(site.announcement, today)) delete site.announcement;
+  if (site.promo && !notExpired(site.promo, today)) site.promo.enabled = false;
 
   site.look = pickLook(tplDir, site.look, slug);
   /* Names with a long single word ("Backstreet") get smaller display type on phones so they don't run off screen. */
@@ -174,7 +185,6 @@ function buildClient(slug) {
   fs.copyFileSync(path.join(ROOT, 'core', 'site.js'), path.join(out, 'site.js'));
   if (site.url) {
     const base = site.url.replace(/\/+$/, '');
-    const today = new Date().toISOString().slice(0, 10);
     fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n');
     fs.writeFileSync(path.join(out, 'sitemap.xml'),
       '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>' + base + '/</loc><lastmod>' + today + '</lastmod></url>\n</urlset>\n');

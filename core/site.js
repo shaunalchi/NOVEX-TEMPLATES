@@ -12,9 +12,20 @@ const KEY = CONFIG.slug || 'site';
     set(k, v) { try { window.sessionStorage.setItem(k, v); } catch (e) {} }
   };
 
+  /* Dated content: hide anything outside its from/until dates (Sydney time), so specials and events lapse on their own */
+  const today = (() => { try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Sydney' }).format(new Date()); } catch (e) { return new Date().toISOString().slice(0, 10); } })();
+  const inWindow = (el) => !((el.dataset.from && el.dataset.from > today) || (el.dataset.until && el.dataset.until < today));
+  $$('.listing[data-from], .listing[data-until]').forEach(el => { if (!inWindow(el)) el.hidden = true; });
+  const whatsOn = $('#whats-on');
+  if (whatsOn && !$$('.listing', whatsOn).some(el => !el.hidden)) {
+    whatsOn.hidden = true;
+    $$('a[href="#whats-on"]').forEach(a => { a.hidden = true; });
+  }
+
   /* Announcement */
   const announce = $('#announce');
   if (announce) {
+    if (!inWindow(announce)) announce.hidden = true;
     if (store.get(KEY + '-announce-closed')) announce.hidden = true;
     $('#announce-close').addEventListener('click', () => { announce.hidden = true; store.set(KEY + '-announce-closed', '1'); });
   }
@@ -231,7 +242,7 @@ const KEY = CONFIG.slug || 'site';
 
   /* Promotional popup: once per session */
   const promo = $('#promo');
-  if (promo && !store.get(KEY + '-promo-seen')) {
+  if (promo && inWindow(promo) && !store.get(KEY + '-promo-seen')) {
     setTimeout(() => {
       if (openModalEl) return;
       store.set(KEY + '-promo-seen', '1');
