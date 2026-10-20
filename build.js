@@ -129,6 +129,35 @@ function pickLook(tplDir, name, slug) {
 const sydneyToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Sydney' }).format(new Date());
 const notExpired = (item, today) => !(item && item.until && item.until < today);
 
+/* Security headers Netlify serves with every page (written to dist/<client>/_headers).
+   The Content-Security-Policy only lets the browser run this site's own scripts, plus the one inline
+   settings script, pinned by its hash. Anything injected from elsewhere is refused. */
+function securityHeaders(html, formEndpoint) {
+  const inline = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+    .map(m => "'sha256-" + require('crypto').createHash('sha256').update(m[1]).digest('base64') + "'");
+  let formOrigin = '';
+  if (formEndpoint && formEndpoint !== 'netlify') { try { formOrigin = ' ' + new URL(formEndpoint).origin; } catch (e) {} }
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' " + inline.join(' '),
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' data:",
+    "connect-src 'self'" + formOrigin,
+    "form-action 'self'" + formOrigin,
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "object-src 'none'"
+  ].join('; ');
+  return ['/*',
+    '  Content-Security-Policy: ' + csp,
+    '  X-Frame-Options: DENY',
+    '  X-Content-Type-Options: nosniff',
+    '  Referrer-Policy: strict-origin-when-cross-origin',
+    '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()',
+    ''].join('\n');
+}
+
 function buildClient(slug) {
   const dir = path.join(ROOT, 'clients', slug);
   const site = JSON.parse(fs.readFileSync(path.join(dir, 'site.json'), 'utf8'));
@@ -183,6 +212,7 @@ function buildClient(slug) {
   fs.writeFileSync(path.join(out, 'index.html'), html);
   fs.writeFileSync(path.join(out, 'styles.css'), fs.readFileSync(path.join(tplDir, 'styles.css'), 'utf8') + site.look.css);
   fs.copyFileSync(path.join(ROOT, 'core', 'site.js'), path.join(out, 'site.js'));
+  fs.writeFileSync(path.join(out, '_headers'), securityHeaders(html, site.runtime.formEndpoint));
   if (site.url) {
     const base = site.url.replace(/\/+$/, '');
     fs.writeFileSync(path.join(out, 'robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n');
